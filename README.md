@@ -79,11 +79,70 @@ docker compose up --build
 ## Repository Structure
 
 ```
-data/
-  mock_school_air_quality.json  — 5 UK schools × 36 months of SAMHE-style sensor data
-  DATA_SPEC.md                  — Field definitions and RAG thresholds (CIBSE/WHO/UK NAQS)
-CASE_SPECIFICATION.md           — Field spec for crowdsourced case reports
-PERSONAS.md                     — User personas: reporters, school admin, DfE delivery managers
+school-air-quality-tracker/
+├── docker-compose.yml              — Orchestrates backend, frontend, and PostgreSQL
+├── CLAUDE.md                       — AI agent context and project conventions
+│
+├── backend/                        — FastAPI application (Python 3.12)
+│   ├── main.py                     — App entry point: CORS, lifespan, seed
+│   ├── models.py                   — SQLAlchemy models (cases, timeline, notes, policies, users)
+│   ├── schemas.py                  — Pydantic request/response schemas
+│   ├── risk.py                     — Pure-Python risk flag computation
+│   ├── recommendations.py          — Rules-based recommended actions
+│   ├── school_air_quality.py       — In-memory loader for sensor data; RAG/threshold helpers
+│   ├── ai_pipeline.py              — Claude + deterministic mock fallback
+│   ├── seed_data.py                — Loads JSON seed files into the database
+│   ├── requirements.txt
+│   ├── requirements-dev.txt
+│   ├── Dockerfile
+│   ├── routes/
+│   │   ├── cases.py                — CRUD, case detail, dashboard, workflow, policies
+│   │   ├── ai.py                   — /ai/cases/{id}/summarise, /ai/cases/{id}/ask/stream
+│   │   ├── air_quality.py          — POST /cases/air-quality (8-section specialist intake)
+│   │   ├── school_air_quality.py   — GET /air-quality/schools + /{urn} (sensor dashboard)
+│   │   └── upload.py               — Generic case submission endpoint
+│   └── tests/
+│       ├── conftest.py             — Pytest fixtures (in-memory SQLite DB)
+│       ├── test_cases_routes.py
+│       ├── test_air_quality.py
+│       ├── test_school_air_quality.py
+│       ├── test_risk.py
+│       ├── test_ai_mock.py
+│       ├── test_applicant.py
+│       └── test_upload.py
+│
+├── frontend/                       — React 18 + Vite + Tailwind (GOV.UK design language)
+│   ├── src/
+│   │   ├── App.jsx                 — Layout, nav, user switcher, AI-mode badge
+│   │   ├── api.js                  — Fetch wrapper / API base URL
+│   │   └── components/
+│   │       ├── CaseQueue.jsx       — Filterable case list with risk pills and severity chips
+│   │       ├── CaseDetail.jsx      — Three-panel view: timeline | workflow | policy + AI chat
+│   │       ├── RiskDashboard.jsx   — Team leader backlog, escalation flags, AQ portfolio view
+│   │       ├── AirQualityIntake.jsx — 8-section specialist intake form
+│   │       ├── SchoolsAirQuality.jsx — Parent-facing sensor dashboard (RAG/trend/sources)
+│   │       ├── UploadPortal.jsx    — Generic case submission form
+│   │       └── ApplicantPortal.jsx — Applicant-facing case tracking portal
+│   ├── index.html
+│   ├── vite.config.js
+│   ├── tailwind.config.js
+│   └── Dockerfile
+│
+├── data/                           — Seed and reference data (JSON + Markdown)
+│   ├── cases.json                  — 20 synthetic cases (10 legacy + 10 air quality)
+│   ├── policy-extracts.json        — 15 policy extracts (incl. POL-AQ-001..005)
+│   ├── workflow-states.json        — State machine per case type with reminder/escalation days
+│   ├── mock_school_air_quality.json — 5 UK schools × 36 months × 8 measures (SAMHE-style)
+│   ├── DATA_SPEC.md                — Authoritative thresholds: CIBSE TM21/BB101, WHO AQG, UK NAQS
+│   └── claims.json                 — Legacy claims seed data
+│
+└── docs/                           — Project documentation
+    ├── ARCHITECTURE.md             — System design and decision log
+    ├── CASE_SPECIFICATION.md       — Field spec for crowdsourced case reports
+    ├── PERSONAS.md                 — User personas: reporters, school admin, DfE delivery managers
+    ├── PRODUCT_DESCRIPTION.md      — Product vision and feature overview
+    ├── problem_context.md          — Background and problem framing
+    └── REBUILD_PLAYBOOK.md         — Phased prompts to rebuild the project from scratch
 ```
 
 ## Personas
