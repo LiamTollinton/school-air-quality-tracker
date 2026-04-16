@@ -125,65 +125,65 @@ Each school contains an `air_quality_monthly` array of 36 objects, one per month
 
 ### CO₂ (CIBSE TM21 / BB101 benchmarks)
 
-| RAG | Range (ppm) | Description |
-|---|---|---|
-| 🟢 Green | < 1000 | Good ventilation, acceptable CO₂ levels |
-| 🟡 Amber | 1000 – 1500 | Moderate — ventilation improvement recommended |
-| 🔴 Red | > 1500 | Poor — immediate ventilation action required |
+| Range (ppm) | Rating |
+|---|---|
+| < 800 | Excellent |
+| 800 – 1000 | Good |
+| 1000 – 1500 | Moderate |
+| > 1500 | Poor |
 
 ### PM2.5 (WHO Air Quality Guidelines 2021)
 
-| RAG | Threshold (μg/m³) | Description |
-|---|---|---|
-| 🟢 Green | ≤ 10 | Within safe range |
-| 🟡 Amber | 10 – 15 | Approaching WHO 24-hour guideline — monitor closely |
-| 🔴 Red | > 15 | Exceeds WHO 24-hour guideline of 15 μg/m³ |
+| Threshold (μg/m³) | Guideline |
+|---|---|
+| ≤ 5 | Annual mean guideline |
+| ≤ 15 | 24-hour mean guideline |
+| > 15 | Exceeds 24-hour guideline |
 
 ### PM10 (WHO Air Quality Guidelines 2021)
 
-| RAG | Threshold (μg/m³) | Description |
-|---|---|---|
-| 🟢 Green | ≤ 25 | Within safe range |
-| 🟡 Amber | 25 – 45 | Approaching WHO 24-hour guideline — monitor closely |
-| 🔴 Red | > 45 | Exceeds WHO 24-hour guideline of 45 μg/m³ |
+| Threshold (μg/m³) | Guideline |
+|---|---|
+| ≤ 15 | Annual mean guideline |
+| ≤ 45 | 24-hour mean guideline |
+| > 45 | Exceeds 24-hour guideline |
 
 ### NO₂ (UK Legal Limits)
 
-| RAG | Threshold (μg/m³) | Description |
-|---|---|---|
-| 🟢 Green | < 25 | Well within UK NAQS annual legal limit |
-| 🟡 Amber | 25 – 40 | Approaching UK annual legal limit of 40 μg/m³ |
-| 🔴 Red | > 40 | Exceeds UK NAQS annual legal limit |
+| Threshold (μg/m³) | Limit |
+|---|---|
+| ≤ 40 | Annual mean legal limit (UK NAQS) |
+| > 40 | Exceeds annual legal limit |
 
 ### Temperature (CIBSE / Building Bulletin 101)
 
-| RAG | Range (°C) | Description |
-|---|---|---|
-| 🟢 Green | 18 – 23 | Recommended classroom range |
-| 🟡 Amber | 16 – 18 or 23 – 28 | Outside recommended range — may affect comfort and learning |
-| 🔴 Red | < 16 or > 28 | Too cold or overheating — action required |
+| Range (°C) | Rating |
+|---|---|
+| 18 – 23 | Recommended classroom range |
+| < 16 | Too cold |
+| > 28 | Overheating threshold (for learning spaces) |
 
 ### Relative Humidity
 
-| RAG | Range (%) | Description |
-|---|---|---|
-| 🟢 Green | 40 – 60 | Optimal range |
-| 🟡 Amber | 30 – 40 or 60 – 70 | Outside optimal — increasing risk of irritation or condensation |
-| 🔴 Red | < 30 or > 70 | Too dry (respiratory irritation risk) or too humid (mould growth risk) |
+| Range (%) | Rating |
+|---|---|
+| 40 – 60 | Optimal |
+| < 30 | Too dry (respiratory irritation risk) |
+| > 70 | Too humid (mould growth risk) |
 
 ---
 
 ## Composite Air Quality Index
 
-The `air_quality_index` is a composite score combining CO₂, PM2.5, and NO₂ readings, expressed as a RAG rating.
+The `air_quality_index` is a composite score combining CO₂, PM2.5, and NO₂ readings.
 
-| RAG | Index | Label | Criteria |
-|---|---|---|---|
-| 🟢 Green | 1 | Excellent | CO₂ <800, PM2.5 <5, NO₂ <15 |
-| 🟢 Green | 2 | Good | CO₂ <1000, PM2.5 <10, NO₂ <25 |
-| 🟡 Amber | 3 | Moderate | CO₂ <1200, PM2.5 <15, NO₂ <35 |
-| 🔴 Red | 4 | Poor | CO₂ <1500, PM2.5 <20, NO₂ <45 |
-| 🔴 Red | 5 | Very Poor | CO₂ ≥1500, PM2.5 ≥20, or NO₂ ≥45 |
+| Index | Label | Criteria |
+|---|---|---|
+| 1 | Excellent | CO₂ <800, PM2.5 <5, NO₂ <15 |
+| 2 | Good | CO₂ <1000, PM2.5 <10, NO₂ <25 |
+| 3 | Moderate | CO₂ <1200, PM2.5 <15, NO₂ <35 |
+| 4 | Poor | CO₂ <1500, PM2.5 <20, NO₂ <45 |
+| 5 | Very Poor | CO₂ ≥1500, PM2.5 ≥20, or NO₂ ≥45 |
 
 Index is assigned based on the **worst performing** of the three primary measures.
 

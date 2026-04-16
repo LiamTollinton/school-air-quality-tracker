@@ -1,0 +1,19 @@
+You are a senior hackathon judge, product manager, and software architect.
+
+Review my local project for Challenge 3: Supporting casework decisions.
+
+Please assess:
+
+1. Does the solution clearly solve the user problem?
+2. What are the strongest parts?
+3. What is weak / confusing?
+4. Is the UI demo-friendly?
+5. Is the workflow realistic for government caseworkers?
+6. What features should I remove?
+7. What features should I add quickly for more impact?
+8. Any bugs or risky code areas?
+9. How can I improve chances of winning tomorrow?
+10. Give me a final score out of 10.
+
+Be honest and practical.
+Focus on hackathon success, not perfection.

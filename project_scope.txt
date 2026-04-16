@@ -1,0 +1,91 @@
+Challenge 3: Supporting casework decisions
+A caseworker receives a new case. To understand it, they open a case management system, a policy guidance document stored on a shared drive, and an email thread from the previous officer who handled it. They read through weeks of notes to understand where the case has got to. They look up which policy applies and what evidence is needed. They check whether any deadlines are approaching. Then they decide what action to take.
+
+This pattern repeats, case after case, throughout the day. Across government, thousands of caseworkers spend a significant proportion of their time on these information-gathering tasks — rather than on the judgement and human decision-making that only a person can provide.
+
+The experience today
+A caseworker opens a case that was assigned to them yesterday. The previous officer has left notes but they are spread across three different fields in the case management system. There is a timeline of events but it does not explain why certain decisions were made. The caseworker needs to know which policy applies — but the policy guidance is a 40-page document and they are not sure which version is current.
+
+They establish that evidence was requested six weeks ago. They are not sure whether it arrived. They check the notes again. It is unclear. They send a chasing email. Later that day they find out the evidence was actually received three weeks ago but logged in a different system.
+
+The applicant, meanwhile, has heard nothing for six weeks. They do not know whether their case is progressing or whether something has gone wrong.
+
+The users
+The caseworker — managing 20 to 40 active cases at any given time. They need to understand a new case quickly, know what action is required, and be confident they are applying the correct policy. They are not a technical user. Opening multiple systems and reading through lengthy notes to get to a decision is a normal part of their day — but it is time that could be spent on cases that genuinely need careful human consideration.
+
+The team leader — responsible for a caseload of perhaps 200 to 300 active cases across their team. They need to know which cases are at risk of breaching a deadline, which need escalating, and where their team's capacity is under pressure. They currently get this picture by asking their caseworkers, not from a system.
+
+The applicant — a citizen or organisation waiting for a decision. They submitted their application weeks ago. They do not know where their case is in the process. They do not know whether the right evidence has been received. They cannot get a meaningful update without calling a helpline.
+
+Why this matters
+Caseworking is one of the largest categories of work in the civil service. Departments across government — in areas covering employment support, tax, immigration, licensing, and many others — each run caseworking operations at significant scale. The systems they use are different, but the underlying patterns are the same: receive a case, gather evidence, apply policy, make a decision, communicate the outcome.
+
+Supporting caseworkers to do this work more effectively — by surfacing the right information at the right moment — has the potential to reduce processing times, improve consistency, and free up caseworkers to focus on the decisions that require genuine human judgement.
+
+A note on AI model access
+The event does not provide access to AI models (such as large language model APIs) for use within your application. This is relevant to this challenge because capabilities like case summarisation would typically involve a language model.
+
+You have three options:
+
+if your team has access to AI models through your department, personal accounts, or locally hosted models, you can integrate them
+you can mock AI endpoints — build the system as if a model were available and return realistic pre-written responses
+you can build the non-AI parts of the system (case display, policy matching, workflow tracking) and demonstrate clearly where a model would plug in
+The judging focuses on the quality of the prototype and the approach, not on whether you have a live model behind it. A well-architected system with mocked AI endpoints scores just as well as one with a live model.
+
+To make this concrete: a tool that displays a case clearly, surfaces the relevant policy matched by case type, shows where the case sits in its workflow and what action is required next, and flags evidence that has been outstanding beyond the policy threshold — built entirely without a language model — is a complete and impressive prototype.
+
+Data provided
+A starter dataset is available in the hackathon repository at challenge-3/:
+
+File	Description
+cases.json	10 synthetic cases covering three case types (benefit review, licence application, compliance check), with varied statuses, timelines, and case notes
+policy-extracts.json	10 policy extracts covering the three case types, including evidence requirements, escalation thresholds, and decision rules
+workflow-states.json	A state machine definition for all three case types, with states, allowed transitions, required actions, and escalation thresholds
+The starter data is enough to build and demo against. If your team wants more cases, use your AI coding tool to generate them — the structure is fully defined in the sample records below. See Hint 3 for a generation prompt.
+
+Sample case record structure
+Each case in cases.json follows this structure:
+
+{
+  "case_id": "CASE-2026-00042",
+  "case_type": "benefit_review",
+  "status": "awaiting_evidence",
+  "applicant": {
+    "name": "Jordan Smith",
+    "reference": "REF-77291",
+    "date_of_birth": "1985-03-14"
+  },
+  "assigned_to": "team_b",
+  "created_date": "2026-01-10",
+  "last_updated": "2026-03-28",
+  "timeline": [
+    {
+      "date": "2026-01-10",
+      "event": "case_created",
+      "note": "Initial application received via online portal."
+    },
+    {
+      "date": "2026-01-15",
+      "event": "evidence_requested",
+      "note": "Requested proof of address and income statement."
+    },
+    {
+      "date": "2026-02-02",
+      "event": "evidence_received",
+      "note": "Proof of address received. Income statement still outstanding."
+    }
+  ],
+  "case_notes": "Applicant relocated from Birmingham to Manchester in December 2025. Previous claim under reference REF-55102 was closed in November 2025. New claim opened due to change of circumstances. Awaiting income statement — applicant stated employer has been contacted."
+}
+Sample policy extract structure
+{
+  "policy_id": "POL-BR-003",
+  "title": "Evidence requirements for benefit reviews",
+  "applicable_case_types": ["benefit_review"],
+  "body": "When a benefit review is triggered by a change of circumstances, the caseworker must obtain: (1) proof of the new address, (2) an income statement covering the 3 months prior to the change, and (3) a signed declaration confirming the change. If any evidence is outstanding after 28 days, the caseworker should issue a reminder. If outstanding after 56 days, the case should be escalated to a team leader."
+}
+Hint 1 — Explore the problem: what does a caseworker actually need?
+Hint 2 — Possible directions and design questions
+Hint 3 — A starting point with specific prompts
+What does a good outcome look like?
+By the end of the day, you should be able to show a tool that makes a caseworker's job meaningfully easier — not by making decisions for them, but by surfacing the right information at the right moment. If you can demo a case, show the relevant policy alongside it, show where it sits in its workflow and what action is required, and explain honestly what is mocked and what would need a real model — that is a complete and credible prototype.
