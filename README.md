@@ -15,6 +15,21 @@ Information is scattered across email inboxes, maintenance logs, and sensor dash
 
 ## Solution
 
+## Architecture snapshot (read this first)
+
+```
+┌────────────────────┐       ┌──────────────────────┐       ┌─────────────────┐
+│  React 18 + Vite   │──────▶│  FastAPI (Python)    │──────▶│  PostgreSQL 16  │
+│  + Tailwind        │  REST │  - stateless         │ SQL   │  (SQLite in     │
+│  (GOV.UK styling)  │  SSE  │  - SQLAlchemy 2      │       │   tests)        │
+└────────────────────┘       └──────────┬───────────┘       └─────────────────┘
+                                        │ 
+                                        ▼
+                             ┌──────────────────────┐
+                             │  Claude Haiku 4.5    │
+                             │  (+ mock fallback)   │
+                             └──────────────────────┘
+
 Three surfaces:
 
 1. **Reporting portal** — parents, teachers, and students submit air quality concern cases with location, category, severity, health impacts, and photo evidence
