@@ -1,60 +1,94 @@
-# School Air Quality Tracker — Product Description
+---
+marp: true
+theme: default
+paginate: true
+style: |
+  section {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f0f7ff;
+    color: #1e293b;
+  }
+  h1, h2 {
+    color: #0f4c81;
+  }
+  h2 {
+    border-bottom: 3px solid #38bdf8;
+    padding-bottom: 0.3em;
+  }
+  section.lead {
+    background: linear-gradient(135deg, #0f4c81 0%, #1e88e5 100%);
+    color: white;
+    text-align: center;
+  }
+  section.lead h1 {
+    color: white;
+    font-size: 2.2em;
+  }
+  section.lead p {
+    color: #e0f2fe;
+  }
+  strong { color: #0f4c81; }
+  section.small { font-size: 0.75em; }
+---
+
+<!-- _class: lead -->
+
+# 🏫 School Air Quality Tracker
 
 ---
 
-## Slide 1 — Title
+## 🏫 1 — School Air Quality Tracker
 
-**School Air Quality Tracker **
-
-A prototype dashboard that surfaces school-level air quality risks, crowd-sources parent reports, and guides proportionate action — bridging monitoring data and the people who need it.
+A prototype dashboard that amalgamates school-level air quality risks with crowd-sourced school-user reports, and guides proportionate action. It flags air quality risks to the people who need it.
 
 ---
 
-## Slide 2 — Problem
+## 🌫️ 2 — Problem
 
-- Air pollution in schools has an adverse effect on pupil health, attendance and schooling.
-- Effective interventions are often practical and affordable, but both interventions and current air quality levels are relatively unknown
+- Air pollution in schools has an adverse effect on pupil health, attendance and schooling. Effective interventions are often practical and affordable, but both interventions and current air quality levels are relatively unknown
 - Parents and school staff lack a simple, localised view of air quality risks at each school, alongside an interpretation and advised interventions to summarise complex scientific data into actionable information
 - Health workers and DfE need a way to aggregate data around school quality both from monitoring data and from reported symptoms or nuisance issues (odour, dust, mould).
 - Existing systems are difficult to navigate, lack aggregation, and do not provide the opportunity to crowd source environmental information from parents and schools. 
 
 ---
 
-## Slide 3 — Target users & use cases
+## 👥 3 — Target users & use cases
 
-- Primary users: parents, school administrators, local public health officers.
+- Key users: parents, school administrators, local public health officers, DfE Delivery Officers.
 - Use cases:
-  - Quickly check whether a school has high pollutant readings, either now (to understand current risks and mitigations needed) or historically (to support school choice and retrospective assessment of risk impacts).
-  - See recent parent reports by category and date.
-  - Capture parent reports relating to air pollution and triage items that need follow-up.
+  - Quickly check whether a school has high pollutant readings, either now (to understand current risks and mitigations needed) or historically (to support parent school choices and retrospective assessment of risk impacts).
+  - Capture & display parent reports relating to air pollution
+  - Triage and review system to identify air quality reports that need follow-up
 
 ---
 
-## Slide 4 — Solution overview
+## 💡 4 — Solution overview
 
-- Single-page mock dashboard showing schools list, detailed pollutant table, and parent reports per school.
-- RAG (Red/Amber/Green) visualisation for quick risk assessment.
-- Parent reports grouped by type (Odor, Dust/Particles, Mould/Moisture, Chemical Smell, Poor Ventilation, Temperature Issues, Other) with counts and last-reported date.
+- Public-facing dashboard showing 8 air quality issues at individual schools, detailed pollutant table, and parent reports (36 months data from 5 schools)
+- Simplified Red-Amber-Green visualisation of pollutants including a certainty measure for quick risk assessment, alongside AI-recommended actions and guidelines
+- Back-end report review system to track, AI-summarise, address and escalate issues. Reporters can check the status of their reports.
 
 ---
 
-## Slide 5 — Key features
+## ⭐ 5 — Key features
 
-- Syntheitc data modelled on realistic SAMHE programme data, CIBSE guidance, and WHO air quality guidelines.
-- Per-school detail view: pollutant percentages, certainty badges, actions, and sources.
-- Parent reports: summary badges showing counts by type and a time-ordered list with reviewed status.
+- Synthetic data modelled on realistic SAMHE programme data, CIBSE guidance, and WHO air quality guidelines.
+- Per-school detail view: pollutant percentages, certainty badges, actions
+- School-user reports: summary badges showing counts by type and a time-ordered list with reviewed status.
 - Simple timeframe control (visible on individual school view) to investigate historical change.
+- Report view for caseworkers to triage and action air quality reports, supported by AI summaries and identified related policies
 
 ---
 
-## Slide 6 — Data sources & privacy
+## 🔒 6 — Data sources & privacy
 
-- For any production system, we would need to ensure that no pupil-identifying data is shown to the public; sample reports need to be anonymised and only describe symptoms/issues.
-- We are using synthetic data
+- This prototpye is using synthetic data
+- For any production system, we would need to ensure that no pupil-identifying data is shown to the public; sample reports would need to be anonymised and only describe symptoms/issues.
+
 
 ---
 
-## Slide 7 — Limitations & assumptions
+## ⚠️ 7 — Limitations & assumptions
 
 - Prototype only. A production system would need to ensure end-users understand the risks and advice appropriately; this is not a substitute for clinical or environmental health advice.
 - Indicators should be interpreted **as trends over time** and **within schools**, not as direct comparisons between schools.
@@ -66,25 +100,42 @@ A prototype dashboard that surfaces school-level air quality risks, crowd-source
 
 ---
 
-## Slide 8 — Next steps / roadmap
+## 🗺️ 8 — Next steps / roadmap - 1
 
 - Wire up real sensor feeds and a lightweight API for adding/reviewing parent reports.
 - Add export and reporting for local public health teams.
 - User research to establish understanding of the dashboard metrics
 - Accessibility review; formalise privacy and retention policies.
-- Enable schools and parents to enter their own data e.g. by hooking up local sensors
+- Enable schools and parents to enter their own data e.g. by hooking up local IoT sensors
+- Aggregate data by Local Authority
 
-## Slide 9 - Extensions
+---
+
+## 🗺️ 8 - Next steps / roadmap - 2
+
+- Embed AI support for air quality reporting to improve reported data quality
+- Automated AI review of submitted photos and videos
+- Enabling automated feedback for proportionate actions to take post-reporting
+- AI-driven auto linking of relevant guidance
+- AI filtering of malicious reports
+
+---
+
+## 🚀 9 — Extensions
 
 - Add live data feeds
 - Enable intervention reporting to track impacts on detected air quality issues
 - Provide automated monitoring to flag peaks in automatically detected air quality issues and issues reported
 - Enable school search. Add live data on schools from DfE.
 
-## Slide 10 - Edge Cases
+---
+
+## 🌦️ 10 — Edge Cases
 
 - We have not modelled the impact of changing weather conditions. For example, a windy day may mitigate or worsen air quality issues depending on the direction.
 - We need to introduce ventilation modelling. 
+- We may have malicious reports. 
+- AQ meters may be in a different location to the symptoms.
 
----
+
 
