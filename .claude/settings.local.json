@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import ast; [ast.parse\\(open\\('backend/'+f\\).read\\(\\)\\) for f in ['models.py','schemas.py','risk.py','seed_data.py','ai_pipeline.py','main.py','routes/cases.py','routes/ai.py','routes/upload.py']]; print\\('All backend files parse OK'\\)\")",
+      "Bash(python -c \"import ast; [ast.parse\\(open\\('backend/'+f\\).read\\(\\)\\) for f in ['schemas.py','routes/cases.py']]; print\\('OK'\\)\")",
+      "Bash(pip install *)",
+      "Bash(python -m pytest -q)",
+      "Bash(python -m pytest tests/test_cases_routes.py::test_list_returns_all_seeded_cases)",
+      "Bash(docker buildx *)",
+      "Bash(python -c \"import json; json.load\\(open\\('data/cases.json'\\)\\); json.load\\(open\\('data/workflow-states.json'\\)\\); json.load\\(open\\('data/policy-extracts.json'\\)\\); print\\('OK'\\)\")",
+      "Bash(python -m pytest -x --tb=short)",
+      "Bash(python -m pytest tests/test_air_quality.py -x --tb=short)",
+      "Bash(python -m pytest --tb=short)",
+      "Bash(curl *)",
+      "Bash(python -m json.tool)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f'total={d[\\\\\"total\\\\\"]}'\\); [print\\(f'  {c[\\\\\"case_id\\\\\"]}  {c[\\\\\"severity_level\\\\\"] or \\\\\"-\\\\\"}  {c[\\\\\"case_notes\\\\\"][:60] if c[\\\\\"case_notes\\\\\"] else \\\\\"\\\\\"}'\\) for c in d['cases'][:5]]\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); aq=d['air_quality']; print\\(f'total_open={aq[\\\\\"total_open\\\\\"]}  urgent={aq[\\\\\"urgent\\\\\"]}  sla_breach={aq[\\\\\"sla_breach\\\\\"]}'\\); print\\(f'by_severity={aq[\\\\\"by_severity\\\\\"]}'\\); print\\(f'Westfield Primary in by_school:', \\\\\"Westfield Primary School\\\\\" in aq['by_school']\\)\")",
+      "Bash(python -c ' *)",
+      "Bash(python -m pytest tests/test_school_air_quality.py -x --tb=short)",
+      "Bash(python -c \"import sys, json; d = json.load\\(sys.stdin\\); print\\(f'school: {d[\\\\\"name\\\\\"]}'\\); print\\(f'timeframe: {d[\\\\\"timeframe\\\\\"]}'\\); print\\(f'latest: {d[\\\\\"latest_reading\\\\\"][\\\\\"month\\\\\"]} AQI={d[\\\\\"latest_reading\\\\\"][\\\\\"air_quality_index\\\\\"]}'\\); print\\('pollutants:'\\); [print\\(f'  {p[\\\\\"display_name\\\\\"]:<12} {p[\\\\\"value\\\\\"]:>7} {p[\\\\\"unit\\\\\"]:<8} rag={p[\\\\\"rag\\\\\"]:<5} pct={p[\\\\\"pct_of_threshold\\\\\"]} certainty={p[\\\\\"certainty\\\\\"]} trend={p[\\\\\"trend\\\\\"]}'\\) for p in d['pollutants']]; print\\(f'parent_reports: {len\\(d[\\\\\"parent_reports\\\\\"]\\)}'\\); print\\(f'summary: {d[\\\\\"parent_reports_summary\\\\\"]}'\\)\")",
+      "Bash(docker compose exec -T backend python -c ' *)"
+    ]
+  }
+}
