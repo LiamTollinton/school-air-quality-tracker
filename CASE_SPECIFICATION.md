@@ -10,7 +10,7 @@ This document defines the required and optional fields for cases raised by schoo
   - Description: Full name of the person reporting the case
   
 - **Submitter Role** (Required)
-  - Type: Enum: [Parent, Student, Teacher, Staff, School Administrator, Other]
+  - Type: Enum: [Parent, Student, Teaching Staff, Facilities Staff, Admin Staff, Other]
   - Description: Role or position of the submitter within or related to the school
 
 - **Contact Email** (Required)
