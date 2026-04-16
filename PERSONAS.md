@@ -40,11 +40,23 @@ Key personas involved in the air quality case management process, from crowdsour
 - **Needs:** Summary view of case volumes, trends, and unresolved critical issues; evidence of action taken for governance reports
 - **Pain points:** Blindsided by escalations, lack of data to justify capital expenditure requests
 
----
+## Stakeholder Category: Multi-School Governing and Oversight Bodies
+
+### 6. Multi-School Governing Bodies  
+*Academy Trusts, Local Authorities, Diocesan Boards*
+- **Goal:** Identify patterns, prioritise interventions, and allocate resources across a group of schools
+- **Context:** Responsible for oversight of multiple schools (typically 3–20). Acts as an intermediary between individual schools and central government or regulators. Needs to distinguish isolated issues from systemic risks
+- **Needs:**
+  - Aggregated view of cases across their school portfolio
+  - Ability to compare trends between schools under their governance
+  - Early warning signals for recurring or escalating issues
+  - Evidence to support funding bids, capital planning, and regulatory engagement
+- **Pain points:** Inconsistent reporting between schools, late escalation of issues, limited visibility until problems become critical, difficulty evidencing need relative to peers
+
 
 ## DfE / Central Government (Oversight & Policy)
 
-### 6. School Delivery Manager (DfE)
+### 7. School Delivery Manager (DfE)
 - **Goal:** Monitor the condition and safety of schools within their region/portfolio; identify systemic issues; support schools in resolving problems
 - **Context:** Responsible for a portfolio of schools. Interfaces between schools and DfE policy/funding. Needs to spot patterns across multiple schools — e.g., a cluster of mould cases in buildings of the same era or construction type
 - **Needs:**
@@ -55,7 +67,7 @@ Key personas involved in the air quality case management process, from crowdsour
   - Evidence base for prioritising interventions
 - **Pain points:** Relying on schools to self-report; inconsistent data quality; no early warning system; difficulty evidencing need to policy teams
 
-### 7. DfE Policy / Analytical Team
+### 8. DfE Policy / Analytical Team
 - **Goal:** Use aggregated, anonymised data to inform national policy on school buildings and air quality standards
 - **Context:** Needs large-scale trend data, not individual cases. Interested in correlations (building age, region, construction type vs. air quality issues)
 - **Needs:** Exportable datasets; national dashboards; trend analysis over time
